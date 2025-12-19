@@ -1,155 +1,212 @@
-/* 🌐 Modern Login Style inspired by Google / Facebook (2025) */
-@import url("https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600&display=swap");
-
-body {
-  font-family: "Google Sans", Roboto, sans-serif;
-  background: #f7f9fc;
-  margin: 0;
-  padding: 0;
+/* Thiết lập biến màu (Color Variables) */
+:root {
+  --color-primary-dark: #0f192a; /* Nền tối */
+  --color-secondary-dark: #1a2840; /* Nền card, hơi sáng hơn */
+  --color-accent-yellow: #f8c21e; /* Màu vàng chủ đạo */
+  --color-text-light: #ffffff;
+  --color-text-secondary: #aaaaaa;
+  --color-input-bg: #21304d; /* Nền input hơi sáng để tăng tương phản với card */
+  --color-link: #9fd3ff; /* Màu xanh nhạt cho link, hòa hợp với tông tối */
 }
 
-.login-wrapper {
+/* 1. Nền tổng thể */
+.login-container-full-screen {
+  background: var(--color-primary-dark);
   display: flex;
-  align-items: center;
   justify-content: center;
-  min-height: 90vh;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
 }
 
-.login-card {
-  background: #fff;
-  width: 380px;
-  padding: 40px 36px;
-  border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+/* 2. Card Đăng nhập */
+.login-card-dark {
+  /* Tăng cường độ tối và bo góc mềm mại hơn */
+  background: var(--color-secondary-dark); 
+  padding: 45px 50px 30px; 
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7); /* Shadow đậm hơn */
+  width: 100%;
+  max-width: 400px; 
   text-align: center;
-  transition: transform 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05); /* Viền mờ */
 }
 
-.login-card:hover {
-  transform: translateY(-3px);
+/* 3. Icon (Hình ảnh người và chìa khóa) */
+/* Cần class này để căn giữa ảnh trong JSX */
+.login-icon-placeholder {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 20px;
+  /* Nếu bạn muốn thay ảnh người và chìa khóa bằng icon khác,
+     hãy đặt icon đó vào đây và chỉnh kích thước */
+}
+/* Nếu bạn giữ nguyên ảnh keylogin.png, hãy đảm bảo class này không can thiệp */
+.login-logo-main {
+  max-width: 100px;
+  height: auto;
+  margin-bottom: 25px;
 }
 
-.login-logo {
-  width: 48px;
-  height: 48px;
-  margin-bottom: 8px;
+/* 4. Tiêu đề */
+.login-title-primary {
+  color: var(--color-text-light);
+  margin-bottom: 5px;
+  font-weight: 700;
+  font-size: 1.8em;
 }
 
-.login-title {
-  font-size: 22px;
-  color: #202124;
-  margin: 6px 0;
+.login-subtitle-secondary {
+  color: var(--color-text-secondary);
+  margin-bottom: 35px;
+  font-size: 1em;
 }
 
-.login-subtitle {
-  color: #5f6368;
-  font-size: 14px;
-  margin-bottom: 20px;
+/* 5. Input Fields */
+.form-group-icon {
+  margin-bottom: 20px; 
 }
 
-.login-form {
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.form-group label {
-  font-size: 13px;
-  color: #555;
-  margin-bottom: 4px;
-  display: block;
-}
-
-.form-group input {
+.form-group-icon input {
   width: 100%;
-  padding: 12px 14px;
-  border: 1px solid #dadce0;
+  padding: 13px 15px; 
+  /* Viền mỏng, bo góc tròn hơn */
+  border: 1px solid #33435c;
   border-radius: 8px;
-  font-size: 15px;
+  background: var(--color-input-bg);
+  color: var(--color-text-light);
+  font-size: 1em;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group-icon input:focus {
+  /* Focus: Viền vàng mỏng */
+  border-color: var(--color-accent-yellow);
+  box-shadow: 0 0 0 1px var(--color-accent-yellow);
   outline: none;
-  transition: 0.2s;
+  background: var(--color-primary-dark); /* Nền tối hơn khi focus */
 }
 
-.form-group input:focus {
-  border-color: #1a73e8;
-  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+.form-group-icon input::placeholder {
+  color: #8c98a9;
 }
 
-button[type="submit"] {
+
+/* Link quên mật khẩu */
+.forgot-password-link {
+  display: block;
+  text-align: right;
+  color: var(--color-link);
+  font-size: 0.9em;
+  text-decoration: none;
+  margin-top: 5px; 
+  margin-bottom: 30px;
+  transition: color 0.3s;
+}
+
+.forgot-password-link:hover {
+  color: var(--color-accent-yellow);
+}
+
+/* 6. Nút Đăng nhập */
+.login-button-primary {
   width: 100%;
-  margin-top: 8px;
-  padding: 12px 0;
-  background: #1a73e8;
-  color: white;
+  padding: 14px;
+  background: var(--color-accent-yellow); 
+  color: var(--color-primary-dark); 
   border: none;
-  border-radius: 8px;
-  font-weight: 500;
-  font-size: 15px;
+  border-radius: 8px; /* Bo góc nhẹ */
   cursor: pointer;
-  transition: 0.25s ease;
+  font-size: 1.1em;
+  font-weight: 800; /* Rất đậm */
+  letter-spacing: 0.8px; 
+  transition: background-color 0.3s, opacity 0.3s, transform 0.1s;
+  text-transform: uppercase; /* Chữ hoa cho cảm giác mạnh mẽ */
 }
 
-button[type="submit"]:hover {
-  background: #1669c1;
+.login-button-primary:hover:not(:disabled) {
+  background: #e0ae00; 
+  box-shadow: 0 0 15px rgba(248, 194, 30, 0.6); /* Shadow mạnh hơn */
 }
 
-button[disabled] {
+.login-button-primary:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
-.register-link {
-  margin-top: 18px;
-  font-size: 13.5px;
-  color: #5f6368;
+/* 7. Đường phân cách và Đăng nhập xã hội (Nếu có) */
+.separator {
+  color: var(--color-text-secondary);
+  margin: 30px 0 25px 0;
+  position: relative;
+  font-size: 0.9em;
 }
 
-.register-link a {
-  color: #1a73e8;
-  text-decoration: none;
+.separator::before,
+.separator::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 35%; /* Ngắn hơn */
+  height: 1px;
+  background: #33435c;
 }
 
-.register-link a:hover {
-  text-decoration: underline;
-}
+.separator::before { left: 0; }
+.separator::after { right: 0; }
 
-/* --- Social Buttons --- */
 .social-login {
-  margin-top: 24px;
   display: flex;
-  justify-content: center;
-  gap: 12px;
+  gap: 15px;
+  margin-bottom: 35px;
 }
 
-.social-btn {
+.social-btn-icon {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #33435c; 
+  background: #101c2c;
+  border-radius: 8px;
+  color: var(--color-text-light);
+  font-weight: 600;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 10px 16px;
-  border: 1px solid #dadce0;
-  border-radius: 8px;
-  background: #fff;
-  font-size: 14px;
-  font-weight: 500;
-  color: #3c4043;
-  cursor: pointer;
-  transition: background 0.2s, box-shadow 0.2s;
+  transition: background-color 0.3s;
 }
 
-.social-btn img {
-  width: 20px;
+.social-btn-icon:hover {
+  background: #21304d; /* Sáng hơn một chút khi hover */
+}
+
+.social-icon {
+  width: 20px; 
   height: 20px;
 }
 
-.social-btn:hover {
-  background: #f1f3f4;
+.google-color {
+  /* Đã thiết lập màu riêng, giữ nguyên để phân biệt */
 }
 
-.google span {
-  color: #202124;
+.facebook-color {
+  /* Đã thiết lập màu riêng, giữ nguyên để phân biệt */
 }
 
-.facebook span {
-  color: #1877f2;
+/* 8. Footer Link */
+.register-link-footer {
+  font-size: 0.95em;
+  color: var(--color-text-secondary);
+  margin-top: 10px;
+}
+
+.register-link-footer a {
+  color: var(--color-accent-yellow);
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.register-link-footer a:hover {
+  color: var(--color-text-light);
 }

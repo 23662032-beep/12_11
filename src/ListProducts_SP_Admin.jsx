@@ -21,7 +21,9 @@ const ListProducts_SP_Admin = () => {
   }, []);
 
   const handleDelete = async (id) => {
-    if (window.confirm("Bạn có chắc muốn xóa sản phẩm này không22222?")) {
+    if (
+      window.confirm("Bạn có chắc chắn muốn gỡ bỏ mẫu xe này khỏi Showroom?")
+    ) {
       const { error } = await supabase.from("product1").delete().eq("id", id);
       if (error) alert("Lỗi khi xóa: " + error.message);
       else fetchProducts();
@@ -29,56 +31,70 @@ const ListProducts_SP_Admin = () => {
   };
 
   return (
-    <div className="container">
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <div className="table-actions">
-          <button
-            className="btn green"
-            onClick={() => navigate("/admin/edit/new")}
-          >
-            ➕ Thêm mới
-          </button>
+    <div className="admin-manage-container">
+      <div className="admin-header-box">
+        <div className="header-left">
+          <h1>Hệ thống Quản lý Showroom</h1>
+          <p>Quản lý danh sách xe và thông số kỹ thuật hệ thống TVHANHCAR</p>
         </div>
+        <button
+          className="btn-add-new"
+          onClick={() => navigate("/admin/edit/new")}
+        >
+          <span>+</span> Thêm mẫu xe mới
+        </button>
+      </div>
 
-        <div>
-          <h2>Quản lý sản phẩm (Admin)</h2>
-
-          {/* Nút thêm mới trên đầu bảng */}
-
-          <table className="product-table">
+      <div className="admin-content-card">
+        <div className="table-responsive">
+          <table className="modern-table">
             <thead>
               <tr>
-                <th>Hình ảnh</th>
-                <th>Tên</th>
-                <th>Giá</th>
+                <th>Sản phẩm</th>
+                <th>Thông tin mẫu xe</th>
+                <th>Giá niêm yết</th>
                 <th>Đánh giá</th>
-                <th>Thao tác</th>
+                <th className="text-center">Thao tác</th>
               </tr>
             </thead>
             <tbody>
               {products.map((p) => (
                 <tr key={p.id}>
-                  <td style={{ width: "100px" }}>
-                    <img src={p.image} alt={p.title} className="thumb" />
+                  <td className="col-img">
+                    <div className="img-wrapper">
+                      <img src={p.image} alt={p.title} />
+                    </div>
                   </td>
-                  <td style={{ width: "500px" }}>{p.title}</td>
-                  <td>{p.price}</td>
-                  <td>
-                    ⭐ {p.rating_rate} ({p.rating_count})
+                  <td className="col-info">
+                    <div className="car-name">{p.title}</div>
+                    <div className="car-id">ID: #TVH-{p.id}</div>
                   </td>
-                  <td style={{ width: "150px" }}>
-                    <button
-                      className="btn yellow"
-                      onClick={() => navigate(`/admin/edit/${p.id}`)}
-                    >
-                      Sửa
-                    </button>
-                    <button
-                      className="btn red"
-                      onClick={() => handleDelete(p.id)}
-                    >
-                      Xóa
-                    </button>
+                  <td className="col-price">
+                    <span className="price-tag">
+                      {Number(p.price).toLocaleString()} $
+                    </span>
+                  </td>
+                  <td className="col-rating">
+                    <div className="rating-badge">
+                      ⭐ {p.rating_rate}{" "}
+                      <span className="count">({p.rating_count})</span>
+                    </div>
+                  </td>
+                  <td className="col-actions">
+                    <div className="action-buttons">
+                      <button
+                        className="btn-edit"
+                        onClick={() => navigate(`/admin/edit/${p.id}`)}
+                      >
+                        Sửa
+                      </button>
+                      <button
+                        className="btn-delete"
+                        onClick={() => handleDelete(p.id)}
+                      >
+                        Xóa
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}

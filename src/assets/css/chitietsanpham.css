@@ -1,0 +1,133 @@
+.detail-page-wrapper {
+  background-color: #0b0c10; /* Nền tối đồng bộ với Header */
+  min-height: 100vh;
+  padding: 100px 0 60px;
+  color: #fff;
+  font-family: sans-serif;
+}
+
+.detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.btn-back-nav {
+  background: transparent;
+  border: 1px solid #444;
+  color: #888;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 25px;
+}
+
+.detail-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.image-box {
+  background: #1a1a1a;
+  padding: 40px;
+  border-radius: 20px;
+  position: relative;
+  border: 1px solid #333;
+}
+
+.image-box img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.car-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: #ffc107;
+  color: #000;
+  padding: 4px 12px;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.car-sub-title {
+  color: #ffc107;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+.car-main-title {
+  font-size: 42px;
+  margin: 10px 0;
+}
+.car-price-value {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.car-description {
+  line-height: 1.6;
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+.car-quick-specs {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.spec-item {
+  background: #222;
+  padding: 12px;
+  border-radius: 8px;
+  flex: 1;
+  text-align: center;
+}
+
+.spec-item span {
+  display: block;
+  font-size: 11px;
+  color: #888;
+}
+.spec-item strong {
+  font-size: 16px;
+}
+
+.detail-button-group {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-primary-buy {
+  flex: 2;
+  background: #ffc107;
+  border: none;
+  padding: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-secondary-compare {
+  flex: 1;
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Status Screen */
+.detail-status-screen {
+  height: 100vh;
+  background: #0b0c10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
